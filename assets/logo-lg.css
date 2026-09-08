@@ -1,0 +1,13 @@
+/* Stable, layout-aware logo sizing. */
+.site-logo {
+  width: 4.5rem;
+  height: 4.5rem;
+  object-fit: contain;
+}
+
+@media (max-width: 767px) {
+  .site-logo {
+    width: 3.75rem;
+    height: 3.75rem;
+  }
+}

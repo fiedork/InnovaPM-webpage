@@ -1,0 +1,13 @@
+{
+  "name": "innovapm-webpage",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Static InnovaPM website",
+  "type": "module",
+  "scripts": {
+    "check": "node scripts/check-site.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

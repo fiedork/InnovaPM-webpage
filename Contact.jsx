@@ -61,6 +61,8 @@ const Contact = () => {
           Email:            formData.email,
           Telefon:          formData.phone,
           Obszar_wyzwania:  formData.challenge,
+          Zgoda_RODO:       true,
+          Zgoda_RODO_data:  new Date().toISOString(),
         }),
       });
 
@@ -129,6 +131,7 @@ const Contact = () => {
                   <Input
                     id="name" name="name"
                     placeholder={t('contact.name_placeholder')}
+                    autoComplete="name"
                     value={formData.name}
                     onChange={handleInputChange}
                     required disabled={isSubmitting}
@@ -141,6 +144,7 @@ const Contact = () => {
                   <Input
                     id="email" name="email" type="email"
                     placeholder={t('contact.email_placeholder')}
+                    autoComplete="email"
                     value={formData.email}
                     onChange={handleInputChange}
                     required disabled={isSubmitting}
@@ -179,6 +183,7 @@ const Contact = () => {
                   <Input
                     id="company" name="company"
                     placeholder={t('contact.company_placeholder')}
+                    autoComplete="organization"
                     value={formData.company}
                     onChange={handleInputChange}
                     disabled={isSubmitting}
@@ -191,6 +196,7 @@ const Contact = () => {
                   <Input
                     id="phone" name="phone" type="tel"
                     placeholder={t('contact.phone_placeholder')}
+                    autoComplete="tel"
                     value={formData.phone}
                     onChange={handleInputChange}
                     disabled={isSubmitting}

@@ -2,285 +2,132 @@
 <html lang="pl">
 <head>
   <meta charset="UTF-8" />
-  <link rel="icon" type="image/png" href="./assets/innova-logo-cropped.png" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0c2340" />
 
-  <!--
-    ZMIANA: title i meta description ustawione tu jako fallback dla botów SEO.
-    vite-plugin-prerender nadpisze je treścią wygenerowaną przez react-helmet,
-    ale te wartości są widoczne jeśli JS się nie załaduje lub crawler jest zbyt szybki.
-  -->
   <title>InnovaPM | Doradztwo strategiczne, wdrażanie technologii i AI dla MŚP</title>
   <meta name="description" content="Butikowe doradztwo dla właścicieli i zarządów MŚP: strategia, PMO, transformacja cyfrowa, AI, dotacje na innowacje i kompetencje zespołu—z mierzalnym efektem w 90 dni." />
+  <link rel="canonical" href="https://innova.pm" />
+
+  <!-- Icons -->
+  <link rel="icon" type="image/png" href="./assets/innova-logo-cropped.png" />
+  <link rel="apple-touch-icon" href="./assets/innova-logo-cropped.png" />
+
+  <!-- Open Graph / Facebook / LinkedIn -->
   <meta property="og:type" content="website" />
   <meta property="og:title" content="InnovaPM | Doradztwo strategiczne, wdrażanie technologii i AI dla MŚP" />
   <meta property="og:description" content="Butikowe doradztwo dla właścicieli i zarządów MŚP: strategia, PMO, transformacja cyfrowa, AI, dotacje na innowacje i kompetencje zespołu—z mierzalnym efektem w 90 dni." />
   <meta property="og:url" content="https://innova.pm" />
-  <meta property="og:image" content="https://innova.pm/assets/innova-hero.png" />
+  <meta property="og:image" content="https://innova.pm/assets/innova-og.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="InnovaPM - doradztwo strategiczne i innowacje dla MŚP" />
   <meta property="og:locale" content="pl_PL" />
-  <link rel="canonical" href="https://innova.pm" />
-  <style>
-    .site-privacy-section {
-      border-top: 1px solid #e2e8f0;
-      background: #f8fafc;
-      padding: 28px 20px 96px;
-      color: #475569;
-      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      text-align: center;
-    }
 
-    .site-privacy-section__inner {
-      max-width: 1120px;
-      margin: 0 auto;
-    }
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "InnovaPM",
+    "url": "https://innova.pm/",
+    "email": "krzysztof@innova.pm",
+    "telephone": "+48608103902",
+    "areaServed": "PL",
+    "description": "Butikowe doradztwo dla właścicieli i zarządów MŚP: strategia, PMO, transformacja cyfrowa, AI, finansowanie innowacji i kompetencje zespołu."
+  }
+  </script>
 
-    .site-privacy-section h2 {
-      margin: 0 0 8px;
-      color: #0c2340;
-      font-size: 1rem;
-      font-weight: 700;
-    }
+  <!-- Twitter / X Cards -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="InnovaPM | Doradztwo strategiczne, wdrażanie technologii i AI dla MŚP" />
+  <meta name="twitter:description" content="Butikowe doradztwo dla właścicieli i zarządów MŚP: strategia, PMO, transformacja cyfrowa, AI, dotacje na innowacje i kompetencje zespołu—z mierzalnym efektem w 90 dni." />
+  <meta name="twitter:image" content="https://innova.pm/assets/innova-og.jpg" />
 
-    .site-privacy-section p {
-      margin: 0;
-      font-size: 0.875rem;
-      line-height: 1.6;
-    }
+  <!-- Preload LCP Hero Image -->
+  <link rel="preload" as="image" href="./assets/innova-hero.webp" fetchpriority="high" type="image/webp" />
 
-    .site-privacy-section a {
-      color: #0369a1;
-      font-weight: 700;
-      text-underline-offset: 3px;
-    }
+  <!-- Typography: Google Fonts Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
-    .site-privacy-section a:hover,
-    .site-privacy-section a:focus-visible {
-      color: #0c2340;
-    }
-
-    @media (min-width: 1024px) {
-      .site-privacy-section {
-        padding-bottom: 28px;
-      }
-    }
-  </style>
-
-  <!-- Google tag (gtag.js) — bez zmian -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-MVWSMYMWL1"></script>
+  <!-- Google Consent Mode v2 & Google Analytics 4 -->
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', {
+      'analytics_storage': 'denied',
+      'ad_storage': 'denied',
+      'wait_for_update': 500
+    });
     gtag('js', new Date());
     gtag('config', 'G-MVWSMYMWL1');
   </script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-MVWSMYMWL1"></script>
+
+  <!-- Application Bundle -->
   <script type="module" crossorigin src="./assets/index-cfc00eb1.js"></script>
-  <link rel="stylesheet" href="./assets/index-445a0a2a.css">
-  <script type="module">
-window.onerror = (message, source, lineno, colno, errorObj) => {
-	const errorDetails = errorObj ? JSON.stringify({
-		name: errorObj.name,
-		message: errorObj.message,
-		stack: errorObj.stack,
-		source,
-		lineno,
-		colno,
-	}) : null;
-
-	window.parent.postMessage({
-		type: 'horizons-runtime-error',
-		message,
-		error: errorDetails
-	}, '*');
-};
-</script>
-  <script type="module">
-const observer = new MutationObserver((mutations) => {
-	for (const mutation of mutations) {
-		for (const addedNode of mutation.addedNodes) {
-			if (
-				addedNode.nodeType === Node.ELEMENT_NODE &&
-				(
-					addedNode.tagName?.toLowerCase() === 'vite-error-overlay' ||
-					addedNode.classList?.contains('backdrop')
-				)
-			) {
-				handleViteOverlay(addedNode);
-			}
-		}
-	}
-});
-
-observer.observe(document.documentElement, {
-	childList: true,
-	subtree: true
-});
-
-function handleViteOverlay(node) {
-	if (!node.shadowRoot) {
-		return;
-	}
-
-	const backdrop = node.shadowRoot.querySelector('.backdrop');
-
-	if (backdrop) {
-		const overlayHtml = backdrop.outerHTML;
-		const parser = new DOMParser();
-		const doc = parser.parseFromString(overlayHtml, 'text/html');
-		const messageBodyElement = doc.querySelector('.message-body');
-		const fileElement = doc.querySelector('.file');
-		const messageText = messageBodyElement ? messageBodyElement.textContent.trim() : '';
-		const fileText = fileElement ? fileElement.textContent.trim() : '';
-		const error = messageText + (fileText ? ' File:' + fileText : '');
-
-		window.parent.postMessage({
-			type: 'horizons-vite-error',
-			error,
-		}, '*');
-	}
-}
-</script>
-  <script type="module">
-const originalConsoleError = console.error;
-const MATCH_LINE_COL_REGEX = /:(\d+):(\d+)\)?\s*$/; // regex to match the :lineNum:colNum
-const MATCH_AT_REGEX = /^\s*at\s+(?:async\s+)?(?:.*?\s+)?\(?/; // regex to remove the 'at' keyword and any 'async' or function name
-const MATCH_PATH_REGEX = /^\//; // regex to remove the leading slash
-
-function parseStackFrameLine(line) {
-	const lineColMatch = line.match(MATCH_LINE_COL_REGEX);
-	if (!lineColMatch) return null;
-	const [, lineNum, colNum] = lineColMatch;
-	const suffix = `:${lineNum}:${colNum}`;
-	const idx = line.lastIndexOf(suffix);
-	if (idx === -1) return null;
-	const before = line.substring(0, idx);
-	const path = before.replace(MATCH_AT_REGEX, '').trim();
-	if (!path) return null;
-
-	try {
-		const pathname = new URL(path).pathname;
-		const filePath = pathname.replace(MATCH_PATH_REGEX, '') || pathname;
-		return `${filePath}:${lineNum}:${colNum}`;
-	} catch (e) {
-		const filePath = path.replace(MATCH_PATH_REGEX, '') || path;
-		return `${filePath}:${lineNum}:${colNum}`;
-	}
-}
-
-function getFilePathFromStack(stack, skipFrames = 0) {
-	if (!stack || typeof stack !== 'string') return null;
-	const lines = stack.split('\n').slice(1);
-
-	const frames = lines.map(line => parseStackFrameLine(line.replace(/\r$/, ''))).filter(Boolean);
-
-	return frames[skipFrames] ?? null;
-}
-
-console.error = function(...args) {
-	originalConsoleError.apply(console, args);
-
-	let errorString = '';
-	let filePath = null;
-
-	for (let i = 0; i < args.length; i++) {
-		const arg = args[i];
-		if (arg instanceof Error) {
-			filePath = getFilePathFromStack(arg.stack, 0);
-			errorString = `${arg.name}: ${arg.message}`;
-			if (filePath) {
-				errorString = `${errorString} at ${filePath}`;
-			}
-			break;
-		}
-	}
-
-	if (!errorString) {
-		errorString = args.map(arg => typeof arg === 'object' ? JSON.stringify(arg) : String(arg)).join(' ');
-		const stack = new Error().stack;
-		filePath = getFilePathFromStack(stack, 1);
-		if (filePath) {
-			errorString = `${errorString} at ${filePath}`;
-		}
-	}
-
-	window.parent.postMessage({
-		type: 'horizons-console-error',
-		error: errorString
-	}, '*');
-};
-</script>
-  <script type="module">
-const originalFetch = window.fetch;
-
-window.fetch = function(...args) {
-	const url = args[0] instanceof Request ? args[0].url : args[0];
-
-	// Skip WebSocket URLs
-	if (url.startsWith('ws:') || url.startsWith('wss:')) {
-		return originalFetch.apply(this, args);
-	}
-
-	return originalFetch.apply(this, args)
-		.then(async response => {
-			const contentType = response.headers.get('Content-Type') || '';
-
-			// Exclude HTML document responses
-			const isDocumentResponse =
-				contentType.includes('text/html') ||
-				contentType.includes('application/xhtml+xml');
-
-			if (!response.ok && !isDocumentResponse) {
-					const responseClone = response.clone();
-					const errorFromRes = await responseClone.text();
-					const requestUrl = response.url;
-					console.error(`Fetch error from ${requestUrl}: ${errorFromRes}`);
-			}
-
-			return response;
-		})
-		.catch(error => {
-			if (!url.match(/.html?$/i)) {
-				console.error(error);
-			}
-
-			throw error;
-		});
-};
-</script>
-  <script type="module">
-if (window.navigation && window.self !== window.top) {
-	window.navigation.addEventListener('navigate', (event) => {
-		const url = event.destination.url;
-
-		try {
-			const destinationUrl = new URL(url);
-			const destinationOrigin = destinationUrl.origin;
-			const currentOrigin = window.location.origin;
-
-			if (destinationOrigin === currentOrigin) {
-				return;
-			}
-		} catch (error) {
-			return;
-		}
-
-		window.parent.postMessage({
-			type: 'horizons-navigation-error',
-			url,
-		}, '*');
-	});
-}
-</script>
+  <link rel="stylesheet" href="./assets/index-445a0a2a.css" />
+<link rel="stylesheet" href="./assets/logo-lg.css" />
 </head>
 <body>
   <div id="root"></div>
-  <section class="site-privacy-section" aria-labelledby="privacy-section-title">
-    <div class="site-privacy-section__inner">
-      <h2 id="privacy-section-title">Prywatność i dane osobowe</h2>
-      <p>
-        Dowiedz się, w jaki sposób InnovaPM przetwarza i chroni dane osobowe.
-        <a href="/polityka-prywatności/">Polityka prywatności</a>
-      </p>
+
+  <!-- Fallback noscript -->
+  <noscript>
+    <div style="padding: 30px; text-align: center; font-family: Inter, sans-serif; background: #f8fafc; color: #334155;">
+      <h2>InnovaPM — Doradztwo strategiczne i wdrażanie AI dla MŚP</h2>
+      <p>Skontaktuj się z nami: <a href="mailto:krzysztof@innova.pm">krzysztof@innova.pm</a> | <a href="/polityka-prywatnosci/">Polityka prywatności</a></p>
     </div>
-  </section>
+  </noscript>
+
+  <!-- Cookie Consent Banner (Consent Mode v2) -->
+  <div id="cookie-banner" role="dialog" aria-modal="true" aria-labelledby="cookie-title" style="display:none; position:fixed; bottom:20px; right:20px; max-width:400px; z-index:99999; background:rgba(255,255,255,0.98); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); border:1px solid #e2e8f0; border-radius:16px; padding:18px 20px; box-shadow:0 20px 40px -15px rgba(15,23,42,0.18); font-family:Inter,system-ui,sans-serif; color:#1e293b; font-size:13px; line-height:1.5;">
+    <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px;">
+      <span style="font-size:16px;">🍪</span>
+      <strong id="cookie-title" style="font-size:14px; color:#0c2340;">Prywatność i cookies</strong>
+    </div>
+    <p style="margin:0 0 14px; color:#64748b; font-size:12.5px;">
+      Używamy plików cookies i narzędzi analitycznych (Google Analytics 4), aby mierzyć ruch i optymalizować działanie strony. Więcej w <a href="/polityka-prywatnosci/" style="color:#0284c7; text-decoration:underline; font-weight:600;">Polityce prywatności</a>.
+    </p>
+    <div style="display:flex; gap:8px; justify-content:flex-end;">
+      <button type="button" id="cookie-reject" style="background:#f1f5f9; color:#475569; border:none; border-radius:8px; padding:8px 14px; font-size:12px; font-weight:600; cursor:pointer;">Tylko niezbędne</button>
+      <button type="button" id="cookie-accept" style="background:#0284c7; color:#ffffff; border:none; border-radius:8px; padding:8px 16px; font-size:12px; font-weight:600; cursor:pointer;">Akceptuję</button>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      try {
+        var consent = localStorage.getItem('innova_cookie_consent_v2');
+        if (consent === 'granted') {
+          gtag('consent', 'update', { 'analytics_storage': 'granted' });
+        } else if (!consent) {
+          window.addEventListener('DOMContentLoaded', function() {
+            var banner = document.getElementById('cookie-banner');
+            if (banner) banner.style.display = 'block';
+
+            var acceptBtn = document.getElementById('cookie-accept');
+            if (acceptBtn) {
+              acceptBtn.addEventListener('click', function() {
+                localStorage.setItem('innova_cookie_consent_v2', 'granted');
+                gtag('consent', 'update', { 'analytics_storage': 'granted' });
+                if (banner) banner.style.display = 'none';
+              });
+            }
+
+            var rejectBtn = document.getElementById('cookie-reject');
+            if (rejectBtn) {
+              rejectBtn.addEventListener('click', function() {
+                localStorage.setItem('innova_cookie_consent_v2', 'denied');
+                gtag('consent', 'update', { 'analytics_storage': 'denied' });
+                if (banner) banner.style.display = 'none';
+              });
+            }
+          });
+        }
+      } catch (e) {}
+    })();
+  </script>
 </body>
 </html>
