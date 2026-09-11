@@ -11,3 +11,23 @@
     height: 3.75rem;
   }
 }
+
+/* Niebieskie obwódki kafelków (InnovaPM Finansowy Impuls, Kompetencje360 i usługi) */
+#uslugi article {
+  border: 1.5px solid rgba(2, 132, 199, 0.4) !important;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+}
+
+#uslugi article:hover {
+  border-color: #0284c7 !important;
+  box-shadow: 0 20px 30px -10px rgba(2, 132, 199, 0.2) !important;
+}
+
+#dla-kogo .grid > div {
+  border: 1.5px solid rgba(2, 132, 199, 0.25);
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+#dla-kogo .grid > div:hover {
+  border-color: #0284c7;
+}

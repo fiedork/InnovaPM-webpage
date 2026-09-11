@@ -213,7 +213,10 @@ const Contact = () => {
                   disabled={isSubmitting}
                 />
                 <Label htmlFor="rodo" className="text-sm text-slate-500 font-normal leading-relaxed">
-                  {t('contact.rodo_label')}
+                  {t('contact.rodo_label')}{' '}
+                  <a href="/polityka-prywatnosci/" target="_blank" rel="noreferrer" className="text-sky-600 underline hover:text-sky-700 font-semibold">
+                    {t('contact.privacy_policy_link') || 'Polityka prywatności'}
+                  </a>
                 </Label>
               </div>
 
