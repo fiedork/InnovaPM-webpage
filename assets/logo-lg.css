@@ -12,22 +12,40 @@
   }
 }
 
-/* Niebieskie obwódki kafelków (InnovaPM Finansowy Impuls, Kompetencje360 i usługi) */
-#uslugi article {
-  border: 1.5px solid rgba(2, 132, 199, 0.4) !important;
-  transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+/* Usunięcie obramowania z kontenera siatki */
+#dla-kogo .grid,
+#dla-kogo .grid > div {
+  border: none;
 }
 
-#uslugi article:hover {
+/* Identyczne obramowanie pojedynczych kafelków w sekcji Usługi oraz Dla kogo */
+#uslugi article,
+#dla-kogo .sm\:grid-cols-2 > div,
+#dla-kogo .group.rounded-2xl {
+  border: 1.5px solid rgba(2, 132, 199, 0.4) !important;
+  border-radius: 1rem !important;
+  position: relative !important;
+  overflow: hidden !important;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease !important;
+}
+
+#uslugi article:hover,
+#dla-kogo .sm\:grid-cols-2 > div:hover,
+#dla-kogo .group.rounded-2xl:hover {
   border-color: #0284c7 !important;
   box-shadow: 0 20px 30px -10px rgba(2, 132, 199, 0.2) !important;
 }
 
-#dla-kogo .grid > div {
-  border: 1.5px solid rgba(2, 132, 199, 0.25);
-  transition: border-color 0.25s ease, box-shadow 0.25s ease;
-}
-
-#dla-kogo .grid > div:hover {
-  border-color: #0284c7;
+/* Niebieski akcent na górze kafelków (taki sam jak w sekcji usługi) */
+#dla-kogo .sm\:grid-cols-2 > div::before,
+#dla-kogo .group.rounded-2xl::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background-color: #0ea5e9;
+  opacity: 0.85;
+  pointer-events: none;
 }
