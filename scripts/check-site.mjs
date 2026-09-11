@@ -12,6 +12,7 @@ const required = [
   'assets/analytics.js',
   'assets/conversion-ui.js',
   'assets/conversion-ui.css',
+  'assets/card-system.css',
   'assets/innova-og.jpg',
   'assets/innova-hero.webp',
   'assets/krzysztof-fiedorowicz.webp',
@@ -33,12 +34,27 @@ for (const pattern of [
   /<script\s+src="\.\/assets\/analytics\.js"><\/script>/,
   /<script\s+src="\.\/assets\/conversion-ui\.js"><\/script>/,
   /<link\s+rel="stylesheet"\s+href="\.\/assets\/conversion-ui\.css"/,
+  /<link\s+rel="stylesheet"\s+href="\.\/assets\/card-system\.css\?v=\d+"/,
 ]) {
   if (!pattern.test(html)) errors.push(`missing index requirement: ${pattern}`);
 }
 
 const analytics = readFileSync(resolve(root, 'assets/analytics.js'), 'utf8');
 const bundle = readFileSync(resolve(root, 'assets/index-cfc00eb1.js'), 'utf8');
+const cardSystem = readFileSync(resolve(root, 'assets/card-system.css'), 'utf8');
+for (const pattern of [
+  /#dla-kogo/,
+  /#uslugi/,
+  /#proces/,
+  /#wspolpraca/,
+  /#wdrozenia/,
+  /#wiedza/,
+  /:focus-visible/,
+  /prefers-reduced-motion:\s*reduce/,
+]) {
+  if (!pattern.test(cardSystem)) errors.push(`missing card system requirement: ${pattern}`);
+}
+
 for (const pattern of [
   /window\.location\.hostname === 'innova\.pm'/,
   /generate_lead/,
