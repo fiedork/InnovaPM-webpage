@@ -12,7 +12,7 @@ import { useLanguage } from '@/contexts/LanguageContext';
 // 1. Formularz zredukowany z 6 do 3 obowiązkowych pól (Name, Email, Challenge)
 // 2. Firma i Telefon — opcjonalne, oznaczone w labelu
 // 3. Pole "Opis/Message" usunięte — select wyzwania wystarczy do kwalifikacji leada
-// 4. Submit button: "Wyślij zapytanie" → "Zarezerwuj bezpłatną konsultację →"
+// 4. Submit button jasno informuje, że formularz służy do ustalenia terminu diagnozy
 // 5. Pod przyciskiem: "Odpiszemy w ciągu 24 godzin"
 // 6. Tytuł i sub sekcji — przepisane zgodnie z audytem
 // 7. GA4 event: generate_lead po udanym wysłaniu, bez danych osobowych

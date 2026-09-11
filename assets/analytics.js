@@ -57,6 +57,11 @@
     var section = link.closest('section');
     var context = section && section.id ? section.id : 'site';
 
+    if (href === '#kontakt') {
+      window.innovaTrack('cta_click', { cta_target: 'contact', cta_location: context });
+      return;
+    }
+
     if (href.indexOf('mailto:') === 0) {
       window.innovaTrack('mailto_click', { link_context: context });
       return;

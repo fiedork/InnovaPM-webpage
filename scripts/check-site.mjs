@@ -10,6 +10,8 @@ const required = [
   'assets/index-cfc00eb1.js',
   'assets/index-445a0a2a.css',
   'assets/analytics.js',
+  'assets/conversion-ui.js',
+  'assets/conversion-ui.css',
   'assets/innova-og.jpg',
   'assets/innova-hero.webp',
   'assets/krzysztof-fiedorowicz.webp',
@@ -29,6 +31,8 @@ for (const pattern of [
   /<meta\s+name="twitter:card"/,
   /<script\s+type="application\/ld\+json">/,
   /<script\s+src="\.\/assets\/analytics\.js"><\/script>/,
+  /<script\s+src="\.\/assets\/conversion-ui\.js"><\/script>/,
+  /<link\s+rel="stylesheet"\s+href="\.\/assets\/conversion-ui\.css"/,
 ]) {
   if (!pattern.test(html)) errors.push(`missing index requirement: ${pattern}`);
 }
@@ -52,6 +56,26 @@ for (const pattern of [
 
 if (bundle.includes('form_submit')) {
   errors.push('legacy form_submit event remains in the production bundle');
+}
+
+const conversionUi = readFileSync(resolve(root, 'assets/conversion-ui.js'), 'utf8');
+for (const section of ['uslugi', 'wdrozenia', 'faq']) {
+  if (!conversionUi.includes(`id: '${section}'`)) {
+    errors.push(`missing repeated CTA after section: ${section}`);
+  }
+}
+
+for (const copy of [
+  'Umów bezpłatną diagnozę 30 min',
+  'Book a free 30-minute diagnosis',
+  'Zobacz przykłady wdrożeń',
+  'See implementation examples',
+  'Poproś o termin diagnozy',
+  'Request a diagnosis slot',
+]) {
+  if (!conversionUi.includes(copy) && !bundle.includes(copy)) {
+    errors.push(`missing conversion copy: ${copy}`);
+  }
 }
 
 const localRefs = [...html.matchAll(/(?:src|href)="(?:\.\/)?(assets\/[^"#?]+)/g)].map((m) => m[1]);
