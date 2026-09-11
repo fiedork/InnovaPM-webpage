@@ -15,7 +15,7 @@ import { useLanguage } from '@/contexts/LanguageContext';
 // 4. Submit button: "Wyślij zapytanie" → "Zarezerwuj bezpłatną konsultację →"
 // 5. Pod przyciskiem: "Odpiszemy w ciągu 24 godzin"
 // 6. Tytuł i sub sekcji — przepisane zgodnie z audytem
-// 7. GA4 event: gtag('event', 'form_submit') po udanym wysłaniu
+// 7. GA4 event: generate_lead po udanym wysłaniu, bez danych osobowych
 
 const Contact = () => {
   const { t } = useLanguage();
@@ -68,10 +68,10 @@ const Contact = () => {
 
       if (response.ok) {
         // ── GA4: zdarzenie konwersji po udanym wysłaniu formularza ──
-        if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
-          window.gtag('event', 'form_submit', {
-            event_category: 'contact',
-            event_label: formData.challenge || 'brak',
+        if (typeof window !== 'undefined' && typeof window.innovaTrack === 'function') {
+          window.innovaTrack('generate_lead', {
+            form_id: 'contact',
+            lead_type: formData.challenge || 'not_set',
           });
         }
 

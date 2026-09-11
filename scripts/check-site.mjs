@@ -9,6 +9,7 @@ const required = [
   'sitemap.xml',
   'assets/index-cfc00eb1.js',
   'assets/index-445a0a2a.css',
+  'assets/analytics.js',
   'assets/innova-og.jpg',
   'assets/innova-hero.webp',
   'assets/krzysztof-fiedorowicz.webp',
@@ -27,9 +28,30 @@ for (const pattern of [
   /<meta\s+property="og:image"/,
   /<meta\s+name="twitter:card"/,
   /<script\s+type="application\/ld\+json">/,
-  /gtag\(['"]consent['"],\s*['"]default['"]/,
+  /<script\s+src="\.\/assets\/analytics\.js"><\/script>/,
 ]) {
   if (!pattern.test(html)) errors.push(`missing index requirement: ${pattern}`);
+}
+
+const analytics = readFileSync(resolve(root, 'assets/analytics.js'), 'utf8');
+const bundle = readFileSync(resolve(root, 'assets/index-cfc00eb1.js'), 'utf8');
+for (const pattern of [
+  /window\.location\.hostname === 'innova\.pm'/,
+  /generate_lead/,
+  /cta_click/,
+  /'mailto_click'/,
+  /'phone_click'/,
+  /'linkedin_click'/,
+  /ad_user_data: 'denied'/,
+  /ad_personalization: 'denied'/,
+]) {
+  if (!pattern.test(analytics) && !pattern.test(bundle)) {
+    errors.push(`missing analytics requirement: ${pattern}`);
+  }
+}
+
+if (bundle.includes('form_submit')) {
+  errors.push('legacy form_submit event remains in the production bundle');
 }
 
 const localRefs = [...html.matchAll(/(?:src|href)="(?:\.\/)?(assets\/[^"#?]+)/g)].map((m) => m[1]);
