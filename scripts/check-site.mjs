@@ -13,6 +13,18 @@ const required = [
   'assets/conversion-ui.js',
   'assets/conversion-ui.css',
   'assets/card-system.css',
+  'assets/card-images/audience-strategy.webp',
+  'assets/card-images/audience-ai.webp',
+  'assets/card-images/audience-product.webp',
+  'assets/card-images/audience-data.webp',
+  'assets/card-images/service-strategy.webp',
+  'assets/card-images/service-digital.webp',
+  'assets/card-images/service-finance.webp',
+  'assets/card-images/service-training.webp',
+  'assets/card-images/cooperation-contract.webp',
+  'assets/card-images/cooperation-interim.jpg',
+  'assets/card-images/knowledge-guide.webp',
+  'assets/card-images/process-cycles.webp',
   'assets/innova-og.jpg',
   'assets/innova-hero.webp',
   'assets/krzysztof-fiedorowicz.webp',
@@ -53,6 +65,12 @@ for (const pattern of [
   /prefers-reduced-motion:\s*reduce/,
 ]) {
   if (!pattern.test(cardSystem)) errors.push(`missing card system requirement: ${pattern}`);
+}
+
+for (const asset of required.filter((file) => file.startsWith('assets/card-images/'))) {
+  if (!cardSystem.includes(`./${asset.replace('assets/', '')}`)) {
+    errors.push(`card image is not referenced by the card system: ${asset}`);
+  }
 }
 
 for (const pattern of [

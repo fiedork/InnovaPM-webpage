@@ -1,4 +1,4 @@
-/* Unified card language: cooperation-card proportions with hero-inspired icon wells. */
+/* Unified card language: cooperation-card proportions with bright, cool stock imagery. */
 :root {
   --ipm-card-radius: 1.5rem;
   --ipm-card-border: rgba(148, 163, 184, 0.24);
@@ -7,10 +7,9 @@
     0 8px 24px -20px rgba(14, 116, 144, 0.2);
   --ipm-card-shadow-hover: 0 24px 56px -30px rgba(15, 23, 42, 0.38),
     0 14px 30px -22px rgba(14, 165, 233, 0.3);
-  --ipm-icon-bg: linear-gradient(145deg, rgba(15, 23, 42, 0.98), rgba(12, 35, 64, 0.94));
-  --ipm-icon-border: rgba(34, 211, 238, 0.32);
-  --ipm-icon-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08),
-    0 12px 26px -14px rgba(6, 182, 212, 0.72);
+  --ipm-photo-border: rgba(14, 165, 233, 0.3);
+  --ipm-photo-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.68),
+    0 12px 24px -16px rgba(2, 132, 199, 0.5);
 }
 
 /* Light cards */
@@ -54,32 +53,103 @@
   opacity: 1;
 }
 
-/* Icon wells: one navy/cyan language across light sections. */
+/* Bright photo thumbnails replace the former dark SVG pictograms. */
 #dla-kogo .grid.gap-5 > div > div:nth-child(2),
 #uslugi article > div:nth-child(2) > div:first-child,
 #wspolpraca article > div.relative > div:first-child,
 #wiedza .mx-auto.mt-12 > a > div:first-child > svg {
-  background: var(--ipm-icon-bg);
-  border: 1px solid var(--ipm-icon-border);
+  background-color: #e0f2fe;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border: 1px solid var(--ipm-photo-border);
   border-radius: 1rem;
-  box-shadow: var(--ipm-icon-shadow);
-  color: #67e8f9;
+  box-shadow: var(--ipm-photo-shadow);
+  color: transparent;
+  filter: brightness(1.1) contrast(0.94) saturate(0.72);
   transform: none;
-  transition: border-color 220ms ease, box-shadow 220ms ease, color 220ms ease,
+  transition: border-color 220ms ease, box-shadow 220ms ease, filter 220ms ease,
     transform 220ms ease;
 }
 
-#wspolpraca article > div.relative > div:first-child {
+#dla-kogo .grid.gap-5 > div > div:nth-child(2) {
   height: 3.5rem;
-  width: 3.5rem;
+  width: 5.25rem;
+}
+
+#uslugi article > div:nth-child(2) > div:first-child,
+#wspolpraca article > div.relative > div:first-child {
+  height: 4rem;
+  width: 6rem;
 }
 
 #wiedza .mx-auto.mt-12 > a > div:first-child > svg {
   box-sizing: border-box;
   flex: 0 0 auto;
   height: 3.5rem;
-  padding: 0.85rem;
-  width: 3.5rem;
+  padding: 0;
+  width: 5.25rem;
+}
+
+#dla-kogo .grid.gap-5 > div > div:nth-child(2) > svg,
+#uslugi article > div:nth-child(2) > div:first-child > svg,
+#wspolpraca article > div.relative > div:first-child > svg {
+  opacity: 0;
+}
+
+#dla-kogo .grid.gap-5 > div:nth-child(1) > div:nth-child(2) {
+  background-image: linear-gradient(rgba(255, 255, 255, 0.2), rgba(186, 230, 253, 0.1)),
+    url("./card-images/audience-strategy.webp");
+}
+
+#dla-kogo .grid.gap-5 > div:nth-child(2) > div:nth-child(2) {
+  background-image: linear-gradient(rgba(255, 255, 255, 0.2), rgba(186, 230, 253, 0.1)),
+    url("./card-images/audience-ai.webp");
+}
+
+#dla-kogo .grid.gap-5 > div:nth-child(3) > div:nth-child(2) {
+  background-image: linear-gradient(rgba(255, 255, 255, 0.2), rgba(186, 230, 253, 0.1)),
+    url("./card-images/audience-product.webp");
+}
+
+#dla-kogo .grid.gap-5 > div:nth-child(4) > div:nth-child(2) {
+  background-image: linear-gradient(rgba(255, 255, 255, 0.2), rgba(186, 230, 253, 0.1)),
+    url("./card-images/audience-data.webp");
+}
+
+#uslugi article:nth-child(1) > div:nth-child(2) > div:first-child {
+  background-image: linear-gradient(rgba(255, 255, 255, 0.2), rgba(186, 230, 253, 0.1)),
+    url("./card-images/service-strategy.webp");
+}
+
+#uslugi article:nth-child(2) > div:nth-child(2) > div:first-child {
+  background-image: linear-gradient(rgba(255, 255, 255, 0.2), rgba(186, 230, 253, 0.1)),
+    url("./card-images/service-digital.webp");
+}
+
+#uslugi article:nth-child(3) > div:nth-child(2) > div:first-child {
+  background-image: linear-gradient(rgba(255, 255, 255, 0.2), rgba(186, 230, 253, 0.1)),
+    url("./card-images/service-finance.webp");
+}
+
+#uslugi article:nth-child(4) > div:nth-child(2) > div:first-child {
+  background-image: linear-gradient(rgba(255, 255, 255, 0.2), rgba(186, 230, 253, 0.1)),
+    url("./card-images/service-training.webp");
+}
+
+#wspolpraca article:nth-child(1) > div.relative > div:first-child {
+  background-image: linear-gradient(rgba(255, 255, 255, 0.2), rgba(186, 230, 253, 0.1)),
+    url("./card-images/cooperation-contract.webp");
+}
+
+#wspolpraca article:nth-child(2) > div.relative > div:first-child {
+  background-image: linear-gradient(rgba(255, 255, 255, 0.2), rgba(186, 230, 253, 0.1)),
+    url("./card-images/cooperation-interim.jpg");
+}
+
+#wiedza .mx-auto.mt-12 > a > div:first-child > svg {
+  background-image: linear-gradient(rgba(255, 255, 255, 0.2), rgba(186, 230, 253, 0.1)),
+    url("./card-images/knowledge-guide.webp");
 }
 
 /* Case studies have no semantic pictogram in the bundle; use a restrained data motif. */
@@ -127,15 +197,48 @@
   width: 2px;
 }
 
-#proces .relative > .grid.gap-6 > div > div:first-child > div,
-#proces .sticky .mt-10 > div > div {
-  background: var(--ipm-icon-bg);
-  border: 1px solid var(--ipm-icon-border);
-  box-shadow: var(--ipm-icon-shadow);
+#proces .relative > .grid.gap-6 > div > div:first-child > div {
+  background: linear-gradient(145deg, rgba(15, 23, 42, 0.98), rgba(12, 35, 64, 0.94));
+  border: 1px solid rgba(34, 211, 238, 0.32);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 12px 26px -14px rgba(6, 182, 212, 0.72);
   color: #67e8f9;
   transform: none;
   transition: border-color 220ms ease, box-shadow 220ms ease, color 220ms ease,
     transform 220ms ease;
+}
+
+#proces .sticky .mt-10 > div > div {
+  background-color: #e0f2fe;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border: 1px solid var(--ipm-photo-border);
+  border-radius: 0.75rem;
+  box-shadow: var(--ipm-photo-shadow);
+  color: transparent;
+  filter: brightness(1.12) contrast(0.92) saturate(0.7);
+  height: 2.75rem;
+  width: 4rem;
+}
+
+#proces .sticky .mt-10 > div > div > svg {
+  opacity: 0;
+}
+
+#proces .sticky .mt-10 > div:nth-child(1) > div {
+  background-image: linear-gradient(rgba(255, 255, 255, 0.2), rgba(186, 230, 253, 0.1)),
+    url("./card-images/process-cycles.webp");
+}
+
+#proces .sticky .mt-10 > div:nth-child(2) > div {
+  background-image: linear-gradient(rgba(255, 255, 255, 0.2), rgba(186, 230, 253, 0.1)),
+    url("./card-images/audience-data.webp");
+}
+
+#proces .sticky .mt-10 > div:nth-child(3) > div {
+  background-image: linear-gradient(rgba(255, 255, 255, 0.2), rgba(186, 230, 253, 0.1)),
+    url("./card-images/knowledge-guide.webp");
 }
 
 #proces .sticky .mt-10 > div {
@@ -179,6 +282,14 @@
       0 14px 30px -14px rgba(34, 211, 238, 0.82);
     color: #cffafe;
     transform: translateY(-1px) scale(1.035);
+  }
+
+  #dla-kogo .grid.gap-5 > div:hover > div:nth-child(2),
+  #uslugi article:hover > div:nth-child(2) > div:first-child,
+  #wspolpraca article:hover > div.relative > div:first-child,
+  #wiedza .mx-auto.mt-12 > a:hover > div:first-child > svg,
+  #proces .sticky .mt-10 > div:hover > div {
+    filter: brightness(1.14) contrast(0.96) saturate(0.8);
   }
 }
 
