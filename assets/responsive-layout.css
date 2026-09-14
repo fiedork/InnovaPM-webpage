@@ -1,0 +1,35 @@
+/* A sticky intro is useful only alongside the process cards, with enough vertical room. */
+@media (max-width:1023px), (max-height:899px) {
+  .advisory-page #proces .sticky{position:static;top:auto}
+}
+.advisory-page{scroll-padding-top:96px}
+.advisory-page section[id]{scroll-margin-top:96px}
+/* Contain the horizontal entrance animation without creating a sticky scroll container. */
+.advisory-page #o-mnie{overflow-x:clip}
+.advisory-page #proces .grid>div{min-width:0}
+.advisory-page #proces .relative>.grid.gap-6>div{position:relative}
+.advisory-page header>div:last-child:not(:first-child){max-height:calc(100dvh - 80px);overflow-y:auto;overscroll-behavior:contain}
+.site-header #navigation.is-open{max-height:calc(100dvh - 78px);overflow-y:auto;overscroll-behavior:contain}
+.site-header .header-inner{min-width:0}
+.aligned-footer .business-footer-links{flex-wrap:wrap}
+@media (max-width:767px){
+  .scenario-grid{grid-template-columns:1fr}
+  .scenario-grid p{min-height:0}
+}
+@media (max-width:1023px){
+  .advisory-page{padding-bottom:calc(80px + env(safe-area-inset-bottom))}
+  .advisory-page #proces .grid.gap-16{gap:40px}
+}
+@media (max-width:1100px){
+  .hero-grid{grid-template-columns:1fr;gap:40px}
+  .hero-copy{max-width:660px}
+  .media-composition{width:100%;max-width:560px;justify-self:center}
+}
+@media (max-width:360px){
+  .site-header .header-label{letter-spacing:0;padding-left:8px;font-size:9px}
+  .site-header .header-inner{gap:8px}
+  .site-header .menu-toggle{padding:10px}
+  .contact .person{gap:12px}
+  .contact .person strong{font-size:14px}
+  .contact .person span{font-size:12px}
+}

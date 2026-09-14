@@ -4,11 +4,11 @@ import vm from 'node:vm';
 
 const source = readFileSync(new URL('../assets/analytics.js', import.meta.url), 'utf8');
 
-function runAnalytics(hostname, storedConsent = null) {
+function runAnalytics(hostname, storedConsent = null, pathname = '/') {
   const scripts = [];
   const listeners = {};
   const window = {
-    location: { hostname },
+    location: { hostname, pathname },
     localStorage: { getItem: () => storedConsent },
   };
   const document = {
@@ -42,4 +42,15 @@ assert.ok(
   'stored analytics consent must be restored',
 );
 
-console.log('Analytics check passed (production host gate and consent verified).');
+for (const [path, group, line] of [['/', 'Doradztwo', 'advisory'], ['/index.html', 'Doradztwo', 'advisory'], ['/cross-media/', 'Cross-media', 'zpr_cross_media'], ['/cross-media/index.html', 'Cross-media', 'zpr_cross_media'], ['/polityka-prywatnosci/', 'Pozostale', 'other'], ['/cross-media-other/', 'Pozostale', 'other']]) {
+  const run = runAnalytics('innova.pm', null, path);
+  const config = run.window.dataLayer.filter(entry => entry[0] === 'config');
+  assert.equal(config.length, 1);
+  assert.equal(config[0][2].content_group, group);
+  run.window.innovaTrack('generate_lead', { form_id: 'test', service_line: 'wrong' });
+  const event = run.window.dataLayer.at(-1);
+  assert.equal(event[2].content_group, group);
+  assert.equal(event[2].service_line, line);
+  assert.equal(event[2].form_id, 'test');
+}
+console.log('Analytics check passed (host gate, consent, single tag, page groups and event attribution verified).');

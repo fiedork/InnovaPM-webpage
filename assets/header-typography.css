@@ -1,0 +1,29 @@
+/* Shared header typography, based on the cross-media page. */
+:root{--header-text:#020617;--header-hover:#0369a1;--header-font-size:.82rem;--header-font-weight:550;--header-cta-size:.8rem}
+header nav[aria-label="Main"]>button,
+header nav[aria-label="Main"]>a,
+.site-header #navigation>a:not(.button),
+header button.text-left{
+  font-family:Inter,system-ui,sans-serif;
+  font-size:var(--header-font-size);
+  font-weight:var(--header-font-weight);
+  line-height:1.4;
+  color:var(--header-text);
+}
+header nav[aria-label="Main"]>button:hover,
+header nav[aria-label="Main"]>a:hover,
+.site-header #navigation>a:not(.button):hover,
+header button.text-left:hover{color:var(--header-hover)}
+header nav[aria-label="Main"]+div>button:last-child,
+header button.bg-sky-600,
+.site-header #navigation>.button{
+  font-family:Inter,system-ui,sans-serif;
+  font-size:var(--header-cta-size);
+  font-weight:650;
+  line-height:1.4;
+  color:#fff;
+  background-color:#0284c7;
+}
+header nav[aria-label="Main"]+div>button:last-child:hover,
+header button.bg-sky-600:hover,
+.site-header #navigation>.button:hover{background-color:var(--header-hover);color:#fff}

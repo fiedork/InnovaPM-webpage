@@ -3,6 +3,13 @@
 
   var measurementId = 'G-MVWSMYMWL1';
   var isProduction = window.location.hostname === 'innova.pm';
+  var path = window.location.pathname || '/';
+  var isMedia = /^\/cross-media(?:\/|$)/.test(path);
+  var isHome = path === '/' || path === '/index.html';
+  var pageContext = {
+    content_group: isMedia ? 'Cross-media' : isHome ? 'Doradztwo' : 'Pozostale',
+    service_line: isMedia ? 'zpr_cross_media' : isHome ? 'advisory' : 'other'
+  };
 
   window.dataLayer = window.dataLayer || [];
   window.gtag = window.gtag || function () {
@@ -11,7 +18,7 @@
 
   window.innovaTrack = function (eventName, parameters) {
     if (!isProduction) return;
-    window.gtag('event', eventName, parameters || {});
+    window.gtag('event', eventName, Object.assign({}, parameters || {}, pageContext));
   };
 
   window.innovaSetAnalyticsConsent = function (value) {
@@ -42,7 +49,7 @@
   }
 
   window.gtag('js', new Date());
-  window.gtag('config', measurementId);
+  window.gtag('config', measurementId, pageContext);
 
   var analyticsScript = document.createElement('script');
   analyticsScript.async = true;
@@ -57,7 +64,7 @@
     var section = link.closest('section');
     var context = section && section.id ? section.id : 'site';
 
-    if (href === '#kontakt') {
+    if (href === '#kontakt' && !link.hasAttribute('data-cta')) {
       window.innovaTrack('cta_click', { cta_target: 'contact', cta_location: context });
       return;
     }

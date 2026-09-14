@@ -5,7 +5,7 @@
   "description": "Static InnovaPM website",
   "type": "module",
   "scripts": {
-    "check": "node scripts/check-site.mjs && node scripts/check-analytics.mjs"
+    "check": "node scripts/check-site.mjs && node scripts/check-analytics.mjs && node scripts/check-cross-media.mjs"
   },
   "engines": {
     "node": ">=20"
