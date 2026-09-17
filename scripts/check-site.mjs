@@ -121,6 +121,25 @@ const sitemap = readFileSync(resolve(root, 'sitemap.xml'), 'utf8');
 if (!sitemap.includes('https://innova.pm/polityka-prywatnosci/')) {
   errors.push('sitemap is missing the canonical privacy URL');
 }
+if (sitemap.includes('prywatno\u015bci')) {
+  errors.push('sitemap must not declare the legacy Unicode privacy URL');
+}
+
+// Legacy Unicode URL (declared in the sitemap until 2026-09-08 and indexed by Google)
+// must keep resolving and redirect clients to the canonical ASCII page.
+const legacyRedirect = resolve(root, 'polityka-prywatno\u015bci', 'index.html');
+if (!existsSync(legacyRedirect)) {
+  errors.push('missing legacy redirect for /polityka-prywatno\u015bci/');
+} else {
+  const redirect = readFileSync(legacyRedirect, 'utf8');
+  for (const pattern of [
+    /<link rel="canonical" href="https:\/\/innova\.pm\/polityka-prywatnosci\/">/,
+    /<meta http-equiv="refresh" content="0; url=https:\/\/innova\.pm\/polityka-prywatnosci\/">/,
+    /href="https:\/\/innova\.pm\/polityka-prywatnosci\/"/,
+  ]) {
+    if (!pattern.test(redirect)) errors.push(`legacy redirect requirement missing: ${pattern}`);
+  }
+}
 
 if (errors.length) {
   console.error(errors.join('\n'));
