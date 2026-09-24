@@ -64,8 +64,32 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
-  <!-- Production-only Google Consent Mode v2 & Google Analytics 4 -->
-  <script src="./assets/analytics.js?v=20260924"></script>
+  <!-- Google tag (gtag.js) - inline on purpose: Search Console verification and
+       other crawlers read the HTML source and never execute assets/analytics.js.
+       The tag stays production-only through the hostname gate below. -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { window.dataLayer.push(arguments); }
+    window.gtag = window.gtag || gtag;
+    if (window.location.hostname === 'innova.pm') {
+      window.__innovaTagBootstrapped = true;
+      gtag('consent', 'default', {
+        analytics_storage: 'denied',
+        ad_storage: 'denied',
+        ad_user_data: 'denied',
+        ad_personalization: 'denied',
+        wait_for_update: 500
+      });
+      gtag('js', new Date());
+      var innovaGoogleTag = document.createElement('script');
+      innovaGoogleTag.async = true;
+      innovaGoogleTag.src = 'https://www.googletagmanager.com/gtag/js?id=G-MVWSMYMWL1';
+      document.head.appendChild(innovaGoogleTag);
+    }
+  </script>
+
+  <!-- Consent banner, page context and event tracking (the tag itself is inline above) -->
+  <script src="./assets/analytics.js?v=20260925"></script>
 
   <!-- Application Bundle -->
   <script type="module" crossorigin src="./assets/index-cfc00eb1.js?v=20260911c"></script>

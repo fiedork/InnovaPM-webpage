@@ -128,6 +128,19 @@ for (const pattern of [
   if (!pattern.test(analytics)) errors.push(`analytics page-context requirement missing: ${pattern}`);
 }
 
+// The Google tag is inline on every page that loads analytics.js, so crawlers and
+// Search Console verification can see it in the HTML source.
+for (const page of ['index.html', '404.html', 'polityka-prywatnosci/index.html', 'cross-media/index.html']) {
+  const content = readFileSync(resolve(root, page), 'utf8');
+  for (const pattern of [
+    /https:\/\/www\.googletagmanager\.com\/gtag\/js\?id=G-MVWSMYMWL1/,
+    /window\.location\.hostname === 'innova\.pm'/,
+    /__innovaTagBootstrapped/,
+  ]) {
+    if (!pattern.test(content)) errors.push(`${page} must carry the inline Google tag: ${pattern}`);
+  }
+}
+
 const conversionUi = readFileSync(resolve(root, 'assets/conversion-ui.js'), 'utf8');
 for (const section of ['uslugi', 'wdrozenia', 'faq']) {
   if (!conversionUi.includes(`id: '${section}'`)) {

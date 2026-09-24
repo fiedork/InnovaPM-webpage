@@ -94,19 +94,31 @@
 
   if (!isProduction) return;
 
-  window.gtag('consent', 'default', {
-    analytics_storage: 'denied',
-    ad_storage: 'denied',
-    ad_user_data: 'denied',
-    ad_personalization: 'denied',
-    wait_for_update: 500
-  });
+  // The Google tag bootstrap (default consent, js, gtag.js loader) now lives inline
+  // in each page's HTML so crawlers and Search Console verification see it without
+  // running this file. This fallback fires only when that inline tag is absent - for
+  // example HTML cached before it shipped - so gtag.js is never loaded twice.
+  if (!window.__innovaTagBootstrapped) {
+    window.gtag('consent', 'default', {
+      analytics_storage: 'denied',
+      ad_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied',
+      wait_for_update: 500
+    });
+
+    window.gtag('js', new Date());
+
+    var fallbackTag = document.createElement('script');
+    fallbackTag.async = true;
+    fallbackTag.src = 'https://www.googletagmanager.com/gtag/js?id=' + measurementId;
+    document.head.appendChild(fallbackTag);
+  }
 
   if (readConsent() === 'granted') {
     window.innovaSetAnalyticsConsent('granted');
   }
 
-  window.gtag('js', new Date());
   // content_group and service_line must reach every hit. Passing them as config
   // parameters alone is not enough: GA4 does not propagate them to the automatic
   // page_view or to Enhanced Measurement events. The group is therefore set for
@@ -115,11 +127,6 @@
   window.gtag('config', measurementId, Object.assign({ send_page_view: false }, pageContext));
   window.gtag('set', pageContext);
   window.innovaTrack('page_view');
-
-  var analyticsScript = document.createElement('script');
-  analyticsScript.async = true;
-  analyticsScript.src = 'https://www.googletagmanager.com/gtag/js?id=' + measurementId;
-  document.head.appendChild(analyticsScript);
 
   document.addEventListener('click', function (event) {
     var target = event.target;

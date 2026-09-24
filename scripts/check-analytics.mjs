@@ -67,4 +67,59 @@ for (const [path, group, line] of [['/', 'Doradztwo', 'advisory'], ['/index.html
   assert.equal(event[2].service_line, line);
   assert.equal(event[2].form_id, 'test');
 }
-console.log('Analytics check passed (host gate, consent, single tag, page groups and event attribution verified).');
+// The Google tag must live in the HTML itself: Search Console verification and other
+// crawlers read the page source and never execute assets/analytics.js.
+const html = readFileSync(new URL('../index.html', import.meta.url), 'utf8');
+const inlineTags = [...html.matchAll(/<script>([\s\S]*?)<\/script>/g)]
+  .map((match) => match[1])
+  .filter((body) => body.includes('googletagmanager.com/gtag/js'));
+assert.equal(inlineTags.length, 1, 'index.html must carry exactly one inline Google tag');
+
+function runBootstrap(sources, hostname, storedConsent = null, pathname = '/') {
+  const scripts = [];
+  const listeners = {};
+  const window = {
+    location: { hostname, pathname },
+    localStorage: { getItem: () => storedConsent },
+  };
+  const document = {
+    addEventListener: (name, listener) => { listeners[name] = listener; },
+    createElement: () => ({}),
+    head: { appendChild: (script) => scripts.push(script) },
+    getElementById: () => null,
+  };
+  const context = vm.createContext({ URL, document, window });
+  for (const source of sources) vm.runInContext(source, context);
+  return { listeners, scripts, window };
+}
+
+const bootstrapped = runBootstrap([...inlineTags, source], 'innova.pm', 'granted');
+assert.equal(
+  bootstrapped.scripts.length,
+  1,
+  'the inline tag and analytics.js must not load the GA4 library twice',
+);
+assert.equal(
+  bootstrapped.scripts[0].src,
+  'https://www.googletagmanager.com/gtag/js?id=G-MVWSMYMWL1',
+);
+assert.equal(
+  bootstrapped.window.__innovaTagBootstrapped,
+  true,
+  'the inline tag must mark itself as bootstrapped',
+);
+assert.ok(
+  bootstrapped.window.dataLayer.some((entry) => entry[0] === 'consent' && entry[1] === 'default'),
+  'the inline tag must set default consent before any hit',
+);
+assert.equal(
+  bootstrapped.window.dataLayer.filter((entry) => entry[0] === 'event' && entry[1] === 'page_view').length,
+  1,
+  'the inline tag plus analytics.js must still send exactly one page_view',
+);
+
+const previewBootstrap = runBootstrap([...inlineTags, source], '127.0.0.1');
+assert.equal(previewBootstrap.scripts.length, 0, 'the inline tag must stay off outside production');
+assert.equal(previewBootstrap.window.dataLayer.length, 0, 'the inline tag must not queue hits outside production');
+
+console.log('Analytics check passed (inline tag, host gate, consent, single tag load, page groups and event attribution verified).');
