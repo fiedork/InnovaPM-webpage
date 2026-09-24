@@ -25,7 +25,7 @@ assert.ok(html.includes('name="robots" content="index,follow,max-image-preview:l
 const schema = JSON.parse(html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)[1]);
 assert.ok(schema['@graph'].some(item => item['@type'] === 'WebPage'));
 assert.ok(schema['@graph'].some(item => item['@type'] === 'Service'));
-assert.equal((html.match(/src="\.\.\/assets\/analytics\.js"/g) || []).length, 1);
+assert.equal((html.match(/src="\.\.\/assets\/analytics\.js(?:\?v=\d+)?"/g) || []).length, 1);
 assert.ok(readFileSync(resolve(root, 'sitemap.xml'), 'utf8').includes('https://innova.pm/cross-media/'));
 assert.equal((html.match(/class="channel-card"/g) || []).length, 6);
 assert.equal(new Set([...html.matchAll(/\.\/logos\/([^" ]+)/g)].map(m => m[1])).size, 7);

@@ -41,6 +41,20 @@ assert.ok(
   production.window.dataLayer.some((entry) => entry[0] === 'consent' && entry[1] === 'update'),
   'stored analytics consent must be restored',
 );
+assert.ok(
+  production.window.dataLayer.some((entry) => entry[0] === 'event' && entry[1] === 'page_view'),
+  'the tag must send exactly one explicit page_view carrying the page context',
+);
+assert.equal(
+  production.window.dataLayer.filter((entry) => entry[0] === 'event' && entry[1] === 'page_view').length,
+  1,
+  'page_view must not be duplicated',
+);
+assert.equal(
+  production.window.dataLayer.find((entry) => entry[0] === 'config')[2].send_page_view,
+  false,
+  'the automatic page_view must stay disabled while the explicit one is used',
+);
 
 for (const [path, group, line] of [['/', 'Doradztwo', 'advisory'], ['/index.html', 'Doradztwo', 'advisory'], ['/cross-media/', 'Cross-media', 'zpr_cross_media'], ['/cross-media/index.html', 'Cross-media', 'zpr_cross_media'], ['/polityka-prywatnosci/', 'Pozostale', 'other'], ['/cross-media-other/', 'Pozostale', 'other']]) {
   const run = runAnalytics('innova.pm', null, path);

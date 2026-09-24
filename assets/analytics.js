@@ -2,10 +2,11 @@
   'use strict';
 
   var measurementId = 'G-MVWSMYMWL1';
+  var consentKey = 'innova_cookie_consent_v2';
   var isProduction = window.location.hostname === 'innova.pm';
   var path = window.location.pathname || '/';
   var isMedia = /^\/cross-media(?:\/|$)/.test(path);
-  var isHome = path === '/' || path === '/index.html';
+  var isHome = path === '/' || path === '/index.html' || path === '/InnovaPM-webpage/';
   var pageContext = {
     content_group: isMedia ? 'Cross-media' : isHome ? 'Doradztwo' : 'Pozostale',
     service_line: isMedia ? 'zpr_cross_media' : isHome ? 'advisory' : 'other'
@@ -15,6 +16,22 @@
   window.gtag = window.gtag || function () {
     window.dataLayer.push(arguments);
   };
+
+  function readConsent() {
+    try {
+      return window.localStorage.getItem(consentKey);
+    } catch (error) {
+      return null;
+    }
+  }
+
+  function storeConsent(value) {
+    try {
+      window.localStorage.setItem(consentKey, value);
+    } catch (error) {
+      // Consent still applies to this visit when browser storage is blocked.
+    }
+  }
 
   window.innovaTrack = function (eventName, parameters) {
     if (!isProduction) return;
@@ -30,6 +47,51 @@
     });
   };
 
+  function setBannerVisible(visible) {
+    var banner = document.getElementById('cookie-banner');
+    if (!banner) return;
+    banner.hidden = !visible;
+    banner.style.display = visible ? 'block' : 'none';
+  }
+
+  function rememberConsent(value) {
+    storeConsent(value);
+    window.innovaSetAnalyticsConsent(value);
+    setBannerVisible(false);
+  }
+
+  // One consent-banner handler for every page that loads this shared tag, so the
+  // banner logic is not duplicated per page. Cross-media keeps its own banner
+  // implementation and raises window.__innovaConsentOwnedByPage; this module then
+  // stays out of the way instead of wiring the same buttons twice.
+  function initConsentBanner() {
+    if (typeof document.getElementById !== 'function') return;
+    if (window.__innovaConsentOwnedByPage === true) return;
+
+    var stored = readConsent();
+    if (stored === 'granted' || stored === 'denied') {
+      window.innovaSetAnalyticsConsent(stored);
+      setBannerVisible(false);
+    } else {
+      setBannerVisible(true);
+    }
+
+    var accept = document.getElementById('cookie-accept');
+    var reject = document.getElementById('cookie-reject');
+    var settings = document.getElementById('cookie-settings');
+
+    if (accept) accept.addEventListener('click', function () { rememberConsent('granted'); });
+    if (reject) reject.addEventListener('click', function () { rememberConsent('denied'); });
+    if (settings) settings.addEventListener('click', function () {
+      setBannerVisible(true);
+      if (reject) reject.focus();
+    });
+  }
+
+  if (typeof document.addEventListener === 'function') {
+    document.addEventListener('DOMContentLoaded', initConsentBanner);
+  }
+
   if (!isProduction) return;
 
   window.gtag('consent', 'default', {
@@ -40,16 +102,19 @@
     wait_for_update: 500
   });
 
-  try {
-    if (window.localStorage.getItem('innova_cookie_consent_v2') === 'granted') {
-      window.innovaSetAnalyticsConsent('granted');
-    }
-  } catch (error) {
-    // Analytics remains denied when browser storage is unavailable.
+  if (readConsent() === 'granted') {
+    window.innovaSetAnalyticsConsent('granted');
   }
 
   window.gtag('js', new Date());
-  window.gtag('config', measurementId, pageContext);
+  // content_group and service_line must reach every hit. Passing them as config
+  // parameters alone is not enough: GA4 does not propagate them to the automatic
+  // page_view or to Enhanced Measurement events. The group is therefore set for
+  // the tag, the automatic page_view is disabled and an explicit page_view carries
+  // the parameters, and every event sent through innovaTrack already merges them.
+  window.gtag('config', measurementId, Object.assign({ send_page_view: false }, pageContext));
+  window.gtag('set', pageContext);
+  window.innovaTrack('page_view');
 
   var analyticsScript = document.createElement('script');
   analyticsScript.async = true;
@@ -57,14 +122,15 @@
   document.head.appendChild(analyticsScript);
 
   document.addEventListener('click', function (event) {
-    var link = event.target.closest && event.target.closest('a[href]');
+    var target = event.target;
+    var link = target && target.closest ? target.closest('a[href]') : null;
     if (!link) return;
 
     var href = link.getAttribute('href') || '';
     var section = link.closest('section');
     var context = section && section.id ? section.id : 'site';
 
-    if (href === '#kontakt' && !link.hasAttribute('data-cta')) {
+    if (href === '#kontakt') {
       window.innovaTrack('cta_click', { cta_target: 'contact', cta_location: context });
       return;
     }

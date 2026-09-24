@@ -43,7 +43,7 @@ for (const pattern of [
   /<meta\s+property="og:image"/,
   /<meta\s+name="twitter:card"/,
   /<script\s+type="application\/ld\+json">/,
-  /<script\s+src="\.\/assets\/analytics\.js"><\/script>/,
+  /<script\s+src="\.\/assets\/analytics\.js(?:\?v=\d+)?"><\/script>/,
   /<script\s+src="\.\/assets\/conversion-ui\.js"><\/script>/,
   /<link\s+rel="stylesheet"\s+href="\.\/assets\/conversion-ui\.css"/,
   /<link\s+rel="stylesheet"\s+href="\.\/assets\/card-system\.css\?v=\d+"/,
@@ -90,6 +90,42 @@ for (const pattern of [
 
 if (bundle.includes('form_submit')) {
   errors.push('legacy form_submit event remains in the production bundle');
+}
+
+for (const pattern of [
+  /<meta\s+name="robots"\s+content="index,follow,max-image-preview:large"\s*\/>/,
+  /<meta\s+property="og:site_name"\s+content="InnovaPM"\s*\/>/,
+  /href="\/cross-media\/"/,
+]) {
+  if (!pattern.test(html)) errors.push(`missing index SEO requirement: ${pattern}`);
+}
+if ((html.match(/<h1\b/g) || []).length !== 1) {
+  errors.push('index.html must expose exactly one static h1 for crawlers');
+}
+if (html.includes('innova_cookie_consent_v2')) {
+  errors.push('index.html must not duplicate the consent-banner logic owned by analytics.js');
+}
+
+const notFound = resolve(root, '404.html');
+if (!existsSync(notFound)) {
+  errors.push('missing branded 404.html');
+} else {
+  const page = readFileSync(notFound, 'utf8');
+  for (const pattern of [
+    /name="robots" content="noindex,follow"/,
+    /src="\/assets\/analytics\.js"/,
+    /href="\/cross-media\/"/,
+  ]) {
+    if (!pattern.test(page)) errors.push(`404 requirement missing: ${pattern}`);
+  }
+}
+
+for (const pattern of [
+  /send_page_view: false/,
+  /gtag\('set'/,
+  /innovaTrack\('page_view'\)/,
+]) {
+  if (!pattern.test(analytics)) errors.push(`analytics page-context requirement missing: ${pattern}`);
 }
 
 const conversionUi = readFileSync(resolve(root, 'assets/conversion-ui.js'), 'utf8');

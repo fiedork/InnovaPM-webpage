@@ -2,6 +2,9 @@
   'use strict';
   function t(text) { return window.crossMediaText ? window.crossMediaText(text) : text; }
   var form = document.getElementById('brief');
+  // This page keeps its own cookie banner; the shared tag in ../assets/analytics.js
+  // must not wire the same buttons a second time.
+  window.__innovaConsentOwnedByPage = true;
   form.enctype = 'multipart/form-data';
   var attachment = document.getElementById('brief-attachment');
   function validateAttachment() {

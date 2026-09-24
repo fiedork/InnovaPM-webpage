@@ -8,6 +8,7 @@
   <title>InnovaPM | Doradztwo strategiczne, wdrażanie technologii i AI dla MŚP</title>
   <meta name="description" content="Butikowe doradztwo dla właścicieli i zarządów MŚP: strategia, PMO, transformacja cyfrowa, AI, dotacje na innowacje i kompetencje zespołu—z mierzalnym efektem w 90 dni." />
   <link rel="canonical" href="https://innova.pm" />
+  <meta name="robots" content="index,follow,max-image-preview:large" />
 
   <!-- Icons -->
   <link rel="icon" type="image/png" href="./assets/innova-logo-cropped.png" />
@@ -15,6 +16,7 @@
 
   <!-- Open Graph / Facebook / LinkedIn -->
   <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="InnovaPM" />
   <meta property="og:title" content="InnovaPM | Doradztwo strategiczne, wdrażanie technologii i AI dla MŚP" />
   <meta property="og:description" content="Butikowe doradztwo dla właścicieli i zarządów MŚP: strategia, PMO, transformacja cyfrowa, AI, dotacje na innowacje i kompetencje zespołu—z mierzalnym efektem w 90 dni." />
   <meta property="og:url" content="https://innova.pm" />
@@ -32,6 +34,17 @@
     "url": "https://innova.pm/",
     "email": "krzysztof@innova.pm",
     "telephone": "+48608103902",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Skoroszewska 4/39",
+      "addressLocality": "Warszawa",
+      "postalCode": "02-495",
+      "addressCountry": "PL"
+    },
+    "founder": {
+      "@type": "Person",
+      "name": "Krzysztof Fiedorowicz"
+    },
     "areaServed": "PL",
     "description": "Butikowe doradztwo dla właścicieli i zarządów MŚP: strategia, PMO, transformacja cyfrowa, AI, finansowanie innowacji i kompetencje zespołu."
   }
@@ -52,7 +65,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
   <!-- Production-only Google Consent Mode v2 & Google Analytics 4 -->
-  <script src="./assets/analytics.js"></script>
+  <script src="./assets/analytics.js?v=20260924"></script>
 
   <!-- Application Bundle -->
   <script type="module" crossorigin src="./assets/index-cfc00eb1.js?v=20260911c"></script>
@@ -67,12 +80,31 @@
 <body class="advisory-page">
   <div id="root"></div>
 
-  <!-- Fallback noscript -->
+  <!-- Static fallback for crawlers that do not execute JavaScript and for visitors
+       with JavaScript disabled. React replaces the contents of #root, so the
+       fallback is kept in noscript to avoid rendering twice. -->
   <noscript>
-    <div style="padding: 30px; text-align: center; font-family: Inter, sans-serif; background: #f8fafc; color: #334155;">
-      <h2>InnovaPM — Doradztwo strategiczne i wdrażanie AI dla MŚP</h2>
-      <p>Skontaktuj się z nami: <a href="mailto:krzysztof@innova.pm">krzysztof@innova.pm</a> | <a href="/polityka-prywatnosci/">Polityka prywatności</a></p>
-    </div>
+    <main style="max-width: 960px; margin: 0 auto; padding: 40px 20px; font-family: Inter, system-ui, sans-serif; color: #0c2340; line-height: 1.65;">
+      <p style="margin: 0 0 8px; font-size: 13px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: #0284c7;">InnovaPM</p>
+      <h1 style="margin: 0 0 16px; font-size: 32px; line-height: 1.25;">Doradztwo strategiczne, technologia i wdrożenia AI dla MŚP</h1>
+      <p style="margin: 0 0 24px;">Butikowe doradztwo dla właścicieli i zarządów MŚP: strategia, PMO, transformacja cyfrowa, AI, dotacje na innowacje i kompetencje zespołu — z mierzalnym efektem w 90 dni.</p>
+      <h2 style="margin: 0 0 8px; font-size: 20px;">Zakres współpracy</h2>
+      <ul style="margin: 0 0 24px; padding-left: 20px;">
+        <li>Strategia i model biznesowy: priorytetyzacja inicjatyw i plan działania na 90 dni.</li>
+        <li>PMO i zarządzanie programami: governance, raportowanie, odzyskiwanie opóźnień.</li>
+        <li>Transformacja cyfrowa i wdrożenia AI w procesach operacyjnych MŚP.</li>
+        <li>Finansowanie innowacji: dotacje, ulgi podatkowe, komercjalizacja.</li>
+      </ul>
+      <h2 style="margin: 0 0 8px; font-size: 20px;">Druga linia biznesowa: kampanie cross-media</h2>
+      <p style="margin: 0 0 24px;">Dobór radia, portali, social media, prasy i projektów specjalnych ZPR do celu kampanii. <a href="/cross-media/" style="color: #0284c7; font-weight: 600;">Kampanie cross-media ZPR — radio, digital i prasa</a></p>
+      <h2 style="margin: 0 0 8px; font-size: 20px;">Kontakt</h2>
+      <p style="margin: 0 0 24px;">E-mail: <a href="mailto:krzysztof@innova.pm" style="color: #0284c7;">krzysztof@innova.pm</a>. Formularz zapytania oraz pełne opisy usług znajdują się w interaktywnej wersji strony.</p>
+      <nav aria-label="InnovaPM" style="font-size: 14px;">
+        <a href="/" style="color: #0284c7;">Strona główna</a> ·
+        <a href="/cross-media/" style="color: #0284c7;">Kampanie cross-media</a> ·
+        <a href="/polityka-prywatnosci/" style="color: #0284c7;">Polityka prywatności</a>
+      </nav>
+    </main>
   </noscript>
 
   <!-- Cookie Consent Banner (Consent Mode v2) -->
@@ -90,37 +122,7 @@
     </div>
   </div>
 
-  <script>
-    (function() {
-      try {
-        var consent = localStorage.getItem('innova_cookie_consent_v2');
-        if (!consent) {
-          window.addEventListener('DOMContentLoaded', function() {
-            var banner = document.getElementById('cookie-banner');
-            if (banner) banner.style.display = 'block';
-
-            var acceptBtn = document.getElementById('cookie-accept');
-            if (acceptBtn) {
-              acceptBtn.addEventListener('click', function() {
-                localStorage.setItem('innova_cookie_consent_v2', 'granted');
-                window.innovaSetAnalyticsConsent('granted');
-                if (banner) banner.style.display = 'none';
-              });
-            }
-
-            var rejectBtn = document.getElementById('cookie-reject');
-            if (rejectBtn) {
-              rejectBtn.addEventListener('click', function() {
-                localStorage.setItem('innova_cookie_consent_v2', 'denied');
-                window.innovaSetAnalyticsConsent('denied');
-                if (banner) banner.style.display = 'none';
-              });
-            }
-          });
-        }
-      } catch (e) {}
-    })();
-  </script>
+  <!-- Cookie banner visibility and consent are handled once, by assets/analytics.js -->
   <script src="./assets/conversion-ui.js"></script>
   <script src="./assets/business-lines.js?v=20260913-2"></script>
 </body>
