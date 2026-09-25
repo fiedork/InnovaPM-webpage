@@ -1,5 +1,7 @@
 # SEO and GA4 — 2026-09-13
 
+> Follow-up: the 2026-09-24 audit and its rollout status are in [`seo-ga4-audit-2026-09-24.md`](seo-ga4-audit-2026-09-24.md).
+
 ## Local website changes (not deployed)
 
 - Retained the descriptive Polish title, description, canonical `/cross-media/`, Open Graph and Twitter metadata; added explicit indexing/image-preview directives, site name and image alternative text.
