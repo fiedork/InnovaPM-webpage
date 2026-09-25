@@ -7,7 +7,7 @@
 
   <title>InnovaPM | Doradztwo strategiczne, wdrażanie technologii i AI dla MŚP</title>
   <meta name="description" content="Butikowe doradztwo dla właścicieli i zarządów MŚP: strategia, PMO, transformacja cyfrowa, AI, dotacje na innowacje i kompetencje zespołu—z mierzalnym efektem w 90 dni." />
-  <link rel="canonical" href="https://innova.pm" />
+  <link rel="canonical" href="https://innova.pm/" />
   <meta name="robots" content="index,follow,max-image-preview:large" />
 
   <!-- Icons -->
@@ -19,7 +19,7 @@
   <meta property="og:site_name" content="InnovaPM" />
   <meta property="og:title" content="InnovaPM | Doradztwo strategiczne, wdrażanie technologii i AI dla MŚP" />
   <meta property="og:description" content="Butikowe doradztwo dla właścicieli i zarządów MŚP: strategia, PMO, transformacja cyfrowa, AI, dotacje na innowacje i kompetencje zespołu—z mierzalnym efektem w 90 dni." />
-  <meta property="og:url" content="https://innova.pm" />
+  <meta property="og:url" content="https://innova.pm/" />
   <meta property="og:image" content="https://innova.pm/assets/innova-og.jpg" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
@@ -29,24 +29,125 @@
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "ProfessionalService",
-    "name": "InnovaPM",
-    "url": "https://innova.pm/",
-    "email": "krzysztof@innova.pm",
-    "telephone": "+48608103902",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "Skoroszewska 4/39",
-      "addressLocality": "Warszawa",
-      "postalCode": "02-495",
-      "addressCountry": "PL"
-    },
-    "founder": {
-      "@type": "Person",
-      "name": "Krzysztof Fiedorowicz"
-    },
-    "areaServed": "PL",
-    "description": "Butikowe doradztwo dla właścicieli i zarządów MŚP: strategia, PMO, transformacja cyfrowa, AI, finansowanie innowacji i kompetencje zespołu."
+    "@graph": [
+      {
+        "@type": "ProfessionalService",
+        "@id": "https://innova.pm/#organization",
+        "name": "InnovaPM",
+        "url": "https://innova.pm/",
+        "logo": "https://innova.pm/assets/innova-logo-cropped.png",
+        "image": "https://innova.pm/assets/innova-og.jpg",
+        "email": "krzysztof@innova.pm",
+        "telephone": "+48608103902",
+        "priceRange": "PLN",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Skoroszewska 4/39",
+          "addressLocality": "Warszawa",
+          "postalCode": "02-495",
+          "addressCountry": "PL"
+        },
+        "founder": {
+          "@type": "Person",
+          "name": "Krzysztof Fiedorowicz",
+          "jobTitle": "Doradca strategiczny & Interim Manager",
+          "sameAs": "https://www.linkedin.com/in/kfiedorowicz"
+        },
+        "sameAs": [
+          "https://www.linkedin.com/in/kfiedorowicz"
+        ],
+        "areaServed": {
+          "@type": "Country",
+          "name": "Polska"
+        },
+        "knowsAbout": [
+          "Doradztwo strategiczne",
+          "Wdrożenia sztucznej inteligencji (AI)",
+          "Transformacja cyfrowa",
+          "PMO i zarządzanie projektami",
+          "Finansowanie innowacji"
+        ],
+        "description": "Butikowe doradztwo dla właścicieli i zarządów MŚP: strategia, PMO, transformacja cyfrowa, AI, finansowanie innowacji i kompetencje zespołu."
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://innova.pm/#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Jaki jest zakres usług InnovaPM?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Doradztwo strategiczne i technologiczne, PMO, product management, transformacja cyfrowa, wdrożenia AI, finansowanie innowacji i rozwój kompetencji — spięte w spójny plan wdrożenia."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "W jakich branżach mam doświadczenie?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Szczególnie przemysł, energetyka, finanse i usługi B2B. Metodyki są uniwersalne i sprawdzają się w MŚP z różnych sektorów."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Jak wygląda rozliczenie? Czy możliwa jest płatność za efekt?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Standardowo model B2B: stawka godzinowa lub ryczałt. W projektach z jasno zdefiniowanymi KPI możliwy success fee."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Na czym polega interim management?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Czasowe objęcie kluczowej roli w organizacji: transformacja, projekt lub luka kompetencyjna — w modelu diagnoza–egzekucja–przekazanie."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Czy realizuję pilotaże (PoC/MVP)?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Tak. Rekomenduję start od audytu i pilotażu, aby zweryfikować efekty przy ograniczonym ryzyku przed szerszym wdrożeniem."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Jak dbam o bezpieczeństwo danych?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "NDA, RODO, kontrolowany dobór narzędzi, zasady dostępu i ograniczenie pracy na danych wrażliwych. Na życzenie — audyt bezpieczeństwa."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Jak rozpocząć współpracę?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Bezpłatna konsultacja 30 min — formularz, LinkedIn lub telefon. Ustalamy priorytety i proponujemy pierwsze kroki."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Jaki jest typowy czas trwania projektu?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Od kilku tygodni (audyt, MVP) do kilku miesięcy przy kompleksowej transformacji — harmonogram ustalamy indywidualnie po diagnozie."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Czy prowadzę szkolenia dla zarządu i zespołów?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Tak — warsztaty i programy z PM, product managementu, AI i transformacji cyfrowej, online lub stacjonarnie, dopasowane do poziomu zespołu."
+            }
+          }
+        ]
+      }
+    ]
   }
   </script>
 
@@ -92,7 +193,7 @@
   <script src="./assets/analytics.js?v=20260925"></script>
 
   <!-- Application Bundle -->
-  <script type="module" crossorigin src="./assets/index-cfc00eb1.js?v=20260911c"></script>
+  <script type="module" crossorigin src="./assets/index-cfc00eb1.js?v=20260925-1"></script>
   <link rel="stylesheet" href="./assets/index-445a0a2a.css" />
   <link rel="stylesheet" href="./assets/logo-lg.css?v=20260911c" />
   <link rel="stylesheet" href="./assets/conversion-ui.css" />
@@ -148,6 +249,6 @@
 
   <!-- Cookie banner visibility and consent are handled once, by assets/analytics.js -->
   <script src="./assets/conversion-ui.js"></script>
-  <script src="./assets/business-lines.js?v=20260913-2"></script>
+  <script src="./assets/business-lines.js?v=20260925-1"></script>
 </body>
 </html>

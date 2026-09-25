@@ -2,6 +2,38 @@
   'use strict';
   function update() {
     var english = document.documentElement.lang === 'en';
+
+    // 1. Header desktop navigation link
+    var nav = document.querySelector('header nav[aria-label="Main"]');
+    if (nav) {
+      var headerLink = nav.querySelector('.business-header-link');
+      if (!headerLink) {
+        headerLink = document.createElement('a');
+        headerLink.className = 'business-header-link text-sm font-semibold text-sky-700 transition hover:text-sky-950 inline-flex items-center gap-1 ml-1';
+        headerLink.href = './cross-media/';
+        headerLink.setAttribute('data-cta', 'nav_cross_media');
+        nav.appendChild(headerLink);
+      }
+      var headerText = (english ? 'Cross-media' : 'Kampanie cross-media') + ' <span aria-hidden="true" style="font-size:11px;">↗</span>';
+      if (headerLink.innerHTML !== headerText) headerLink.innerHTML = headerText;
+    }
+
+    // 2. Header mobile navigation link
+    var mobileContainer = document.querySelector('header .border-t .flex-col');
+    if (mobileContainer) {
+      var mobileLink = mobileContainer.querySelector('.business-mobile-link');
+      if (!mobileLink) {
+        mobileLink = document.createElement('a');
+        mobileLink.className = 'business-mobile-link rounded-md px-3 py-3 text-left text-sm font-semibold text-sky-700 hover:bg-sky-50 flex items-center justify-between border-t border-slate-100 mt-1';
+        mobileLink.href = './cross-media/';
+        mobileLink.setAttribute('data-cta', 'mobile_nav_cross_media');
+        mobileContainer.appendChild(mobileLink);
+      }
+      var mobileText = (english ? 'Cross-media campaigns' : 'Kampanie cross-media') + ' <span aria-hidden="true">↗</span>';
+      if (mobileLink.innerHTML !== mobileText) mobileLink.innerHTML = mobileText;
+    }
+
+    // 3. Footer and business-entry block
     var privacy = document.getElementById('privacy');
     var footer = privacy && privacy.closest('footer');
     if (!footer) return;

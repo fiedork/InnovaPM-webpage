@@ -130,7 +130,7 @@ for (const pattern of [
 
 // The Google tag is inline on every page that loads analytics.js, so crawlers and
 // Search Console verification can see it in the HTML source.
-for (const page of ['index.html', '404.html', 'polityka-prywatnosci/index.html', 'cross-media/index.html']) {
+for (const page of ['index.html', '404.html', 'polityka-prywatnosci/index.html', 'cross-media/index.html', 'cross-media/en/index.html']) {
   const content = readFileSync(resolve(root, page), 'utf8');
   for (const pattern of [
     /https:\/\/www\.googletagmanager\.com\/gtag\/js\?id=G-MVWSMYMWL1/,
