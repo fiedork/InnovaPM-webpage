@@ -16,4 +16,5 @@ They are used under the [Unsplash License](https://unsplash.com/license).
 | `cooperation-contract.webp` | [Original image](https://images.unsplash.com/photo-1450101499163-c8848c66ca85) |
 | `cooperation-interim.jpg` | [Photo page](https://unsplash.com/photos/YsJUxCIW14U) |
 | `knowledge-guide.webp` | [Photo page](https://unsplash.com/photos/s9CC2SKySJM) |
+| `diagnostyka-fazy-zero.webp` | [LinkedIn post](https://www.linkedin.com/feed/update/urn:li:ugcPost:7515716094679035904/) official InnovaPM document cover |
 | `process-cycles.webp` | [Photo page](https://unsplash.com/photos/QBpZGqEMsKg) |

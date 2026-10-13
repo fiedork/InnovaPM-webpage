@@ -24,6 +24,7 @@ const required = [
   'assets/card-images/cooperation-contract.webp',
   'assets/card-images/cooperation-interim.jpg',
   'assets/card-images/knowledge-guide.webp',
+  'assets/card-images/diagnostyka-fazy-zero.webp',
   'assets/card-images/process-cycles.webp',
   'assets/innova-og.jpg',
   'assets/innova-hero.webp',

@@ -147,7 +147,13 @@
     url("./card-images/cooperation-interim.jpg");
 }
 
-#wiedza .mx-auto.mt-12 > a > div:first-child > svg {
+#wiedza .mx-auto.mt-12 > a:nth-child(1) > div:first-child > svg {
+  background-image: linear-gradient(rgba(255, 255, 255, 0.15), rgba(186, 230, 253, 0.05)),
+    url("./card-images/diagnostyka-fazy-zero.webp");
+  background-position: 85% center;
+}
+
+#wiedza .mx-auto.mt-12 > a:nth-child(2) > div:first-child > svg {
   background-image: linear-gradient(rgba(255, 255, 255, 0.2), rgba(186, 230, 253, 0.1)),
     url("./card-images/knowledge-guide.webp");
 }
